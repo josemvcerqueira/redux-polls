@@ -10,6 +10,14 @@ a {
   color: #252525;
 }
 
+button {
+  cursor: pointer;
+}
+
+button:focus {
+  outline: 0;
+}
+
 .container {
   max-width: 1000px;
   margin: 0 auto;
@@ -59,7 +67,7 @@ a {
   text-transform: uppercase;
   margin: 35px auto;
   padding: 10px;
-  border: 1px solid rgba(0,0,0,.29);
+  border: 1px solid rgba(0, 0, 0, 0.29);
   cursor: pointer;
   background: #fff;
   font-size: 16px;
@@ -68,7 +76,7 @@ a {
 }
 
 .btn:hover {
-  border-color: rgba(0,0,0,.5);
+  border-color: rgba(0, 0, 0, 0.5);
   text-decoration: none;
 }
 
@@ -122,7 +130,7 @@ li {
 
 .dashboard-list {
   font-size: 18px;
-  letter-spacing: .4px;
+  letter-spacing: 0.4px;
 }
 
 .dashboard-list a:hover {
@@ -202,7 +210,7 @@ input {
   text-transform: uppercase;
   margin: 35px auto;
   padding: 10px;
-  border: 1px solid rgba(0,0,0,.29);
+  border: 1px solid rgba(0, 0, 0, 0.29);
   cursor: pointer;
   background: #fff;
   font-size: 16px;
