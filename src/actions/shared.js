@@ -3,8 +3,6 @@ import { receiveUsers } from "./users";
 import { receivePolls } from "./polls";
 import { setAuthedUser } from "./authedUser";
 
-console.log(receiveUsers);
-
 const AUTHED_ID = "tylermcginnis";
 
 // Action creator
