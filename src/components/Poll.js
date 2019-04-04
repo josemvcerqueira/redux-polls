@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getPercentage } from "../utils/helpers";
+import { handleAddAnswer } from "../actions/answers";
 
 const getVoteKeys = () => ["aVotes", "bVotes", "cVotes", "dVotes"];
 
@@ -9,14 +10,20 @@ class Poll extends Component {
 		const { poll, authedUser } = this.props;
 		this.answered = true;
 
-		console.log("add Answer", answer);
+		this.props.dispatch(
+			handleAddAnswer({
+				authedUser,
+				answer,
+				id: poll.id
+			})
+		);
 	};
 	render() {
 		if (this.props.poll === null) {
 			return <p>This poll does not exist</p>;
 		}
 
-		const { poll, vote, authorVatar } = this.props;
+		const { poll, vote, authorAvatar } = this.props;
 
 		const totalVotes = getVoteKeys().reduce(
 			(acc, key) => acc + poll[key].length,
@@ -27,7 +34,7 @@ class Poll extends Component {
 			<div className="poll-container">
 				<h1 className="question">{poll.question}</h1>
 				<div className="poll-author">
-					By <img src={authorVatar} alt="Author's avatar" />
+					By <img src={authorAvatar} alt="Author's avatar" />
 				</div>
 				<ul>
 					{["aText", "bText", "cText", "dText"].map(key => {
@@ -35,7 +42,7 @@ class Poll extends Component {
 
 						return (
 							<li
-								onclick={() => {
+								onClick={() => {
 									if (vote === null && !this.answered) {
 										this.handleAnswer(key[0]);
 									}
@@ -71,7 +78,7 @@ function mapStateToProps({ authedUser, polls, users }, { match }) {
 
 	if (!poll) {
 		return {
-			pull: null
+			poll: null
 		};
 	}
 
@@ -83,11 +90,13 @@ function mapStateToProps({ authedUser, polls, users }, { match }) {
 		return poll[key].includes(authedUser) ? key : vote;
 	}, null);
 
+	console.log(users);
+
 	return {
 		poll,
 		vote,
 		authedUser,
-		authorVatar: users[poll.author].avatarURL
+		authorAvatar: users[poll.author].avatarURL
 	};
 }
 
