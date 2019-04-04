@@ -27,8 +27,7 @@ class AddPoll extends Component {
 
 	handleSubmit = event => {
 		event.preventDefault();
-		// Redirect to /
-		console.log("Add Poll:", this.state);
+		this.props.history.push("/");
 		this.props.dispatch(handleAddPoll(this.state));
 	};
 
